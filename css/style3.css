@@ -1,0 +1,27 @@
+html, body {
+    animation: gradient 15s ease infinite
+}
+.custom-heading {
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 3px black;
+    animation: glow 2s ease-in-out infinite;
+    font-size: 40px;
+    font-style: italic;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 2px 2px 3px black;
+    }
+    50% {
+        text-shadow: 0 0 15px white, 0 0 20px white, 0 0 30px white, 0 0 40px white;
+    }
+    100% {
+        text-shadow: 2px 2px 3px black;
+    }
+}
+p {
+    color: white;
+}

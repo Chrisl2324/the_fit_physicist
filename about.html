@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/style3.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex flex-column justify-content-center w-100 h-100">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="custom-heading">About Me</h1>
+        <p>I am a 31 year old fitness enthusiast, looking to share my passion with others</p>
+    </div>
+</div>
+
+{% endblock %}
