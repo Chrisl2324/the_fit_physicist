@@ -1,8 +1,10 @@
 from flask import Flask, flash, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 import os
-from flask_login import UserMixin
+from flask_login import UserMixin, LoginManager
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -64,7 +66,7 @@ def index():
     context = {
         "articles": articles
     }
-    return render_template('index.html',title='Home', **context)
+    return render_template('practice.html',title='Home', **context)
     
 @app.route('/about')
 def about():
@@ -89,6 +91,41 @@ def contact():
         return redirect(url_for('index'))
     
     return render_template('contact.html')
+
+login_manager = LoginManager(app)
+
+@app.route('/signup', methods=["GET", "POST"])
+def register():
+    if request.method=="POST":
+        username = request.form.get('username')
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        username_exits = User.query.filter_by(
+            username=username).first()
+        if username_exits:
+            flash("This username already exists!")
+            return redirect(url_for('register'))
+        
+        email_exits = User.query.filter_by(
+            email=email).first()
+        if email_exits:
+            flash("This email is already registered!")
+
+        password_hash = generate_password_hash(password)
+
+        new_user = User(username=username, first_name=first_name, last_name=last_name,
+                        email=email, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash("You have signed up successfully!")
+        return redirect(url_for('login'))
+    
+    return render_template('practice.html', title='Home')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
