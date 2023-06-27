@@ -59,7 +59,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" id="signup-button" class="btn btn-primary" disabled>Save changes</button>
                 </div>
               </div>
             </div>
@@ -148,7 +148,8 @@
 		<a href="" class="text-decoration-none">
 			<h5 class="fw-light text-white m-0">— A website by Chris Lombardi —</h5>
 		</a>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
-
+        <script src="{{url_for('static', filename='signup-level.js')}}"></script>
       
 {% endblock %}
